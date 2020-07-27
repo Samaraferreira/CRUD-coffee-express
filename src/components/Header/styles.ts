@@ -1,16 +1,19 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  background: #c72828;
-  padding: 30px 0;
+  background: #2d2926;
+  padding: 30px 40px;
 
   header {
-    width: 1280px;
+    width: 100%;
     margin: 0 auto;
-    padding: 0 0 160px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    img {
+      width: 200px;
+    }
 
     nav {
       div {
@@ -18,7 +21,7 @@ export const Container = styled.div`
           font-weight: 600;
           border-radius: 8px;
           border: 0;
-          background: #39b100;
+          background: #c72828;
           color: #fff;
 
           display: flex;
@@ -32,7 +35,7 @@ export const Container = styled.div`
           .icon {
             display: flex;
             padding: 16px 16px;
-            background: #41c900;
+            background: #c52828;
             border-radius: 0 8px 8px 0;
             margin: 0 auto;
           }

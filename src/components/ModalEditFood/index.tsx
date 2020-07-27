@@ -1,9 +1,9 @@
 import React, { useRef, useCallback } from 'react';
 
-import { FiCheckSquare } from 'react-icons/fi';
+import { FiCheckSquare, FiXCircle } from 'react-icons/fi';
 import { FormHandles } from '@unform/core';
 import { Form } from './styles';
-import Modal from '../Modal';
+
 import Input from '../Input';
 
 interface IFoodPlate {
@@ -39,30 +39,45 @@ const ModalEditFood: React.FC<IModalProps> = ({
 
   const handleSubmit = useCallback(
     async (data: IEditFoodData) => {
-      // EDIT A FOOD PLATE AND CLOSE THE MODAL
+      handleUpdateFood(data);
+
+      setIsOpen();
     },
     [handleUpdateFood, setIsOpen],
   );
 
   return (
-    <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
-      <Form ref={formRef} onSubmit={handleSubmit} initialData={editingFood}>
-        <h1>Editar Prato</h1>
-        <Input name="image" placeholder="Cole o link aqui" />
+    <>
+      {isOpen && (
+        <Form ref={formRef} onSubmit={handleSubmit} initialData={editingFood}>
+          <span>
+            <h1>Editar Prato</h1>
+            <FiXCircle size={24} color="#000" onClick={setIsOpen} />
+          </span>
 
-        <Input name="name" placeholder="Ex: Moda Italiana" />
-        <Input name="price" placeholder="Ex: 19.90" />
+          <Input
+            title="URL da imagem"
+            name="image"
+            placeholder="Cole o link aqui"
+          />
 
-        <Input name="description" placeholder="Descrição" />
+          <Input title="Nome do prato" name="name" placeholder="Ex: Coffee" />
 
-        <button type="submit" data-testid="edit-food-button">
-          <div className="text">Editar Prato</div>
-          <div className="icon">
+          <Input title="Preço" name="price" placeholder="Ex: 19.90" />
+
+          <Input
+            title="Descrição do prato"
+            name="description"
+            placeholder="Descrição"
+          />
+
+          <button type="submit" data-testid="edit-food-button">
+            Editar Prato
             <FiCheckSquare size={24} />
-          </div>
-        </button>
-      </Form>
-    </Modal>
+          </button>
+        </Form>
+      )}
+    </>
   );
 };
 

@@ -5,13 +5,17 @@ interface IFoodPlateProps {
 }
 
 export const Container = styled.div<IFoodPlateProps>`
-  background: #f0f0f5;
+  background: #fff;
   border-radius: 8px;
+  max-width: 380px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0px 4px 4px rgba(116, 116, 122, 0.25);
 
   header {
-    background: #ffb84d;
     border-radius: 8px 8px 0px 0px;
-    height: 192px;
+    height: 240px;
     overflow: hidden;
     transition: 0.3s opacity;
     text-align: center;
@@ -23,13 +27,14 @@ export const Container = styled.div<IFoodPlateProps>`
       `};
 
     img {
+      width: 100%;
       pointer-events: none;
       user-select: none;
     }
   }
 
   section.body {
-    padding: 30px;
+    padding: 20px;
 
     h2 {
       color: #3d3d4d;
@@ -59,14 +64,14 @@ export const Container = styled.div<IFoodPlateProps>`
     align-items: center;
 
     padding: 20px 30px;
-    background: #e4e4eb;
+    background: #fff;
     border-radius: 0px 0px 8px 8px;
 
     div.icon-container {
       display: flex;
 
       button {
-        background: #fff;
+        background: #f2f2f2;
         padding: 10px;
         border-radius: 8px;
         display: flex;
@@ -79,6 +84,14 @@ export const Container = styled.div<IFoodPlateProps>`
 
         & + button {
           margin-left: 6px;
+        }
+
+        &:hover {
+          background-color: #000;
+
+          svg {
+            color: #fff;
+          }
         }
       }
     }
@@ -131,7 +144,7 @@ export const Container = styled.div<IFoodPlateProps>`
         }
 
         input:checked + .slider {
-          background-color: #39b100;
+          background-color: #000;
         }
 
         input:focus + .slider {

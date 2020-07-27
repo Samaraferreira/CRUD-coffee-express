@@ -7,6 +7,7 @@ import api from '../../services/api';
 import Food from '../../components/Food';
 import ModalAddFood from '../../components/ModalAddFood';
 import ModalEditFood from '../../components/ModalEditFood';
+import Loader from '../../components/Loader';
 
 import { FoodsContainer } from './styles';
 
@@ -27,7 +28,8 @@ const Dashboard: React.FC = () => {
 
   useEffect(() => {
     async function loadFoods(): Promise<void> {
-      // TODO LOAD FOODS
+      const response = await api.get('/foods');
+      setFoods(response.data);
     }
 
     loadFoods();
@@ -37,7 +39,13 @@ const Dashboard: React.FC = () => {
     food: Omit<IFoodPlate, 'id' | 'available'>,
   ): Promise<void> {
     try {
-      // TODO ADD A NEW FOOD PLATE TO THE API
+      const id = Math.floor(Math.random() * 999);
+
+      const updatedFood = { id, ...food, available: true };
+
+      const response = await api.post('/foods', updatedFood);
+
+      setFoods([...foods, response.data]);
     } catch (err) {
       console.log(err);
     }
@@ -46,11 +54,23 @@ const Dashboard: React.FC = () => {
   async function handleUpdateFood(
     food: Omit<IFoodPlate, 'id' | 'available'>,
   ): Promise<void> {
-    // TODO UPDATE A FOOD PLATE ON THE API
+    const { id, available } = editingFood;
+
+    const updatedFood = { id, ...food, available: true };
+
+    const response = await api.put(`/foods/${id}`, updatedFood);
+
+    const updatedState = foods.filter(item => item.id !== id);
+
+    setFoods([...updatedState, response.data]);
   }
 
   async function handleDeleteFood(id: number): Promise<void> {
-    // TODO DELETE A FOOD PLATE FROM THE API
+    await api.delete(`/foods/${id}`);
+
+    const updatedState = foods.filter(item => item.id !== id);
+
+    setFoods(updatedState);
   }
 
   function toggleModal(): void {
@@ -62,7 +82,8 @@ const Dashboard: React.FC = () => {
   }
 
   function handleEditFood(food: IFoodPlate): void {
-    // TODO SET THE CURRENT EDITING FOOD ID IN THE STATE
+    setEditingFood(food);
+    setEditModalOpen(true);
   }
 
   return (
@@ -79,10 +100,9 @@ const Dashboard: React.FC = () => {
         editingFood={editingFood}
         handleUpdateFood={handleUpdateFood}
       />
-
-      <FoodsContainer data-testid="foods-list">
-        {foods &&
-          foods.map(food => (
+      {foods.length > 0 ? (
+        <FoodsContainer data-testid="foods-list">
+          {foods.map(food => (
             <Food
               key={food.id}
               food={food}
@@ -90,7 +110,10 @@ const Dashboard: React.FC = () => {
               handleEditFood={handleEditFood}
             />
           ))}
-      </FoodsContainer>
+        </FoodsContainer>
+      ) : (
+        <Loader />
+      )}
     </>
   );
 };
