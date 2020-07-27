@@ -11,7 +11,7 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 - Styled-components
 
 <p align="center">
-  <img alt="Coffee express" src=".github/site.gif" width="620">
+  <img alt="Coffee express" src="https://res.cloudinary.com/dlghnwowx/image/upload/v1595892217/Coffee_express_mo5t0w.gif" width="620">
 </p>
 
 ## Executar localmente
