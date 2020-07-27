@@ -11,10 +11,10 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 - Styled-components
 
 <p align="center">
-  <img alt="Task Manager" src=".github/site.gif" width="600">
+  <img alt="Coffee express" src=".github/site.gif" width="620">
 </p>
 
-## Running Locally
+## Executar localmente
 
 ```sh
 yarn install
@@ -25,6 +25,4 @@ yarn api:server
 # start the app on a new terminal window
 yarn start
 ```
-
-Runs the app in development mode.<br>
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
