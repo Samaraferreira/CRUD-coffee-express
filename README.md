@@ -11,7 +11,7 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 - Styled-components
 
 <p align="center">
-  <img alt="Task Manager" src=".github/site.gif" width="300">
+  <img alt="Task Manager" src=".github/site.gif" width="600">
 </p>
 
 ## Running Locally
