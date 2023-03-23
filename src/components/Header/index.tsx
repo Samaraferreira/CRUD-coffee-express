@@ -1,26 +1,23 @@
 import React from 'react';
-
-import { FiPlusSquare } from 'react-icons/fi';
+import { IconType } from 'react-icons';
 import { Container } from './styles';
 
 import Logo from '../../assets/logo.png';
+import CustomButton from '../CustomButton';
 
 interface IHeaderProps {
   openModal: () => void;
+  text: string
+  icon: IconType
 }
 
-const Header: React.FC<IHeaderProps> = ({ openModal }) => (
+const Header: React.FC<IHeaderProps> = ({ openModal, text, icon }) => (
   <Container>
     <header>
       <img src={Logo} alt="GoRestaurant" />
       <nav>
         <div>
-          <button type="button" onClick={openModal}>
-            <div className="text">Novo Prato</div>
-            <div className="icon">
-              <FiPlusSquare size={24} />
-            </div>
-          </button>
+          <CustomButton text={text} onClickAction={openModal} icon={icon} />
         </div>
       </nav>
     </header>

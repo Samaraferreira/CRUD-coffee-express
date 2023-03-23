@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { FiPlusSquare } from 'react-icons/fi';
+import { FiShoppingBag } from 'react-icons/fi';
 
 import Header from '../../components/Header';
 
@@ -21,7 +21,7 @@ interface IFoodPlate {
   available: boolean;
 }
 
-const Dashboard: React.FC = () => {
+const Delivery: React.FC = () => {
   const [foods, setFoods] = useState<IFoodPlate[]>([]);
   const [editingFood, setEditingFood] = useState<IFoodPlate>({} as IFoodPlate);
   const [modalOpen, setModalOpen] = useState(false);
@@ -29,8 +29,15 @@ const Dashboard: React.FC = () => {
 
   useEffect(() => {
     async function loadFoods(): Promise<void> {
-      const response = await api.get('/foods');
-      setFoods(response.data);
+      //const response = await api.get('/foods');
+      setFoods([{
+        "id": 157,
+        "name": "Premium Filter Coffee",
+        "description": "Rich tasting and full-bodied coffee with an intense aroma. It's our signature blend but filtered.      ",
+        "price": "7.90",
+        "available": true,
+        "image": "https://www.costa.co.uk/static/pim/5/f/9/a/5f9a409a9cd0009d967d265931e058cf98dad140_filter_coffee_product.jpg"
+      }]);
     }
 
     loadFoods();
@@ -89,17 +96,11 @@ const Dashboard: React.FC = () => {
 
   return (
     <>
-      <Header openModal={toggleModal} text={"Novo Produto"} icon={FiPlusSquare} />
+      <Header openModal={toggleModal} text={"Sacola"} icon={FiShoppingBag} />
       <ModalAddFood
         isOpen={modalOpen}
         setIsOpen={toggleModal}
         handleAddFood={handleAddFood}
-      />
-      <ModalEditFood
-        isOpen={editModalOpen}
-        setIsOpen={toggleEditModal}
-        editingFood={editingFood}
-        handleUpdateFood={handleUpdateFood}
       />
       {foods.length > 0 ? (
         <FoodsContainer data-testid="foods-list">
@@ -119,4 +120,4 @@ const Dashboard: React.FC = () => {
   );
 };
 
-export default Dashboard;
+export default Delivery;
